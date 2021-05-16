@@ -68,3 +68,32 @@ SELECT * FROM employee;
 SELECT * FROM salaries;
 SELECT * FROM title;
 
+--List employee number, first name, last name, sex, and salary
+SELECT e.emp_no, e.last_name, e.first_name, e.sex, s.salary
+FROM employee AS e
+JOIN salaries AS s
+ON e.emp_no = s.emp_no;
+
+--List first name, last name, and hire date for employees hired in 1986
+SELECT first_name, last_name, hire_date 
+FROM employee
+WHERE hire_date BETWEEN '1/1/1986' AND '12/31/1986'
+ORDER BY hire_date;
+
+--List dept no, dept name, emp no, last name, and first name of each manager
+SELECT d.dept_no, d.dept_name, m.emp_no, e.last_name, e.first_name
+FROM departments AS d
+JOIN dept_manager AS m
+ON d.dept_no = m.dept_no
+JOIN employee AS e
+ON m.emp_no = e.emp_no;
+
+--List emp no, last name, first name, and dept name for each employee
+SELECT de.emp_no, e.last_name, e.first_name, d.dept_name
+FROM dept_emp AS de
+JOIN employee AS e
+ON de.emp_no = e.emp_no
+JOIN departments AS d
+ON de.dept_no = d.dept_no;
+
+--List first name, last name, and sex of employees with first name "Hercules" last name starting with B
