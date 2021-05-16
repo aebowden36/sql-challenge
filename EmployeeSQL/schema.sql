@@ -69,7 +69,7 @@ SELECT * FROM salaries;
 SELECT * FROM title;
 
 --List employee number, first name, last name, sex, and salary
-SELECT e.emp_no, e.last_name, e.first_name, e.sex, s.salary
+SELECT e.emp_no, e.first_name, e.last_name, e.sex, s.salary
 FROM employee AS e
 JOIN salaries AS s
 ON e.emp_no = s.emp_no;
@@ -103,7 +103,7 @@ WHERE first_name = 'Hercules'
 AND last_name Like 'B%';
 
 --List emp no, last name, first name, and dept name for employees in Sales and Development depts
-SELECT d.dept_name, e.last_name, e.first_name
+SELECT de.emp_no, e.last_name, e.first_name, d.dept_name
 FROM dept_emp AS de
 JOIN employee AS e
 ON de.emp_no = e.emp_no
@@ -111,3 +111,15 @@ JOIN departments AS d
 ON de.dept_no = d.dept_no
 WHERE d.dept_name = 'Sales'
 OR d.dept_name = 'Development';
+
+--List count of employee last names in descending order
+SELECT last_name,
+COUNT(last_name) AS "last_name_frequency"
+FROM employee
+GROUP BY last_name
+ORDER BY
+COUNT(last_name) DESC;
+
+--Search your ID number
+SELECT * FROM employee
+WHERE emp_no = 499942
